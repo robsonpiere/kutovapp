@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,MenuController } from 'ionic-angular';
 import {Sobre} from '../sobre/sobre';
+
 
 /*
   Generated class for the Login page.
@@ -14,7 +15,10 @@ import {Sobre} from '../sobre/sobre';
 })
 export class Login {
 
- constructor(public nav: NavController) { }
+ constructor(public nav: NavController, public menu : MenuController) {
+
+   this.menu.swipeEnable(false,"menuprincipal");
+  }
 
     username:string;
     password:string;
