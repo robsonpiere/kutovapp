@@ -17,12 +17,17 @@
 
 
     .menu{
-        background-color: #159957;
-        background-image: -webkit-linear-gradient(300deg, #155799, #159957);
-        background-image: -o-linear-gradient(300deg, #155799, #159957);
-        background-image: linear-gradient(30deg, #155799, #159957);
+        background-color: #fff;
     }
 
     .transparente{
         background: transparent;
+    }
+
+    ion-content{
+        background-color: #fff; 
+        background-image: 
+        linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+        linear-gradient(#eee .1em, transparent .1em);
+        background-size: 100% 1.2em;
     }
