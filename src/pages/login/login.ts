@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import {Sobre} from '../sobre/sobre';
 
 /*
   Generated class for the Login page.
@@ -13,10 +14,16 @@ import { NavController } from 'ionic-angular';
 })
 export class Login {
 
-  constructor(public navCtrl: NavController) {}
+ constructor(public nav: NavController) { }
 
-  ionViewDidLoad() {
-    console.log('Hello Login Page');
-  }
+    username:string;
+    password:string;
+
+ login() {
+        
+        //Navigate to home page              
+        this.nav.setRoot(Sobre);
+
+       }
 
 }
