@@ -1,0 +1,3 @@
+http://blog.ionic.io/working-with-data-services-vs-nav-params/
+http://www.gajotres.net/ionic-2-making-rest-http-requests-like-a-pro/
+http://www.gajotres.net/ionic-2-handling-a-simple-user-authorization/2/

@@ -1,0 +1,30 @@
+<ion-content padding>
+
+    <ion-row>
+      <ion-col text-center class="titulo">Nova Conta</ion-col>
+    </ion-row>
+       <ion-list>
+
+      <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input type="text" value=""></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" value=""></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <div padding>
+      <button ion-button color="primary" block>
+          <ion-icon ios="ios-person-add" md="md-person-add"></ion-icon>
+            &nbsp;Criar Conta
+          </button>
+      <button ion-button icon-left block color="danger" (click)="fechar()">
+        <ion-icon ios="ios-exit" md="md-exit"></ion-icon>
+        Cancelar
+        </button>
+    </div>
+</ion-content>
