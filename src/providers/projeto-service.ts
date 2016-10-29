@@ -11,8 +11,8 @@ export class ProjetoService {
 
   }
 
-  teste():Observable<any> {
-    return this.http.get("https://randomuser.me/api/?nat=br").map(data => data.json());
+  getProjetos():Observable<any> {
+    return this.http.get("http://kutovapp-api.herokuapp.com/api/projetos").map(data => data.json());
   }
 
 }
