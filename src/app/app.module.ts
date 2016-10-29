@@ -8,6 +8,8 @@ import { Page2 } from '../pages/page2/page2';
 import {Sobre} from '../pages/sobre/sobre';
 
 import{ProjetoService} from '../providers/projeto-service';
+import{LoginService} from '../providers/login-service';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +34,6 @@ import{ProjetoService} from '../providers/projeto-service';
     Sobre
     
   ],
-  providers: [ProjetoService]
+  providers: [ProjetoService,LoginService]
 })
 export class AppModule {}

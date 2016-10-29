@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController,MenuController, LoadingController ,ModalController,Platform, NavParams, ViewController} from 'ionic-angular';
 import {Sobre} from '../sobre/sobre';
+import {LoginService} from '../../providers/login-service';
 
 
 /*
@@ -18,16 +19,22 @@ export class Login {
  constructor(public nav: NavController, public menu : MenuController,public loadingCtrl: LoadingController,public modalCtrl: ModalController) {
 
    this.menu.swipeEnable(false,"menuprincipal");
+    window.localStorage.removeItem("session-token");
+    window.localStorage.removeItem("session-userid");
   }
 
-    username:string;
-    password:string;
+    usuario:string;
+    senha:string;
 
     login() {        
           //Navigate to home page 
           this.menu.swipeEnable(true,"menuprincipal");
+          console.log(this.usuario);
+          console.log(this.senha);
           this.loading();            
-          this.nav.setRoot(Sobre);
+          this.nav.setRoot(Sobre);          
+          //window.localStorage.setItem("session-token", JSON.stringify(data.token));
+          //window.localStorage.setItem("session-userid", JSON.stringify(data.id));
         }
 
     novaConta(){
