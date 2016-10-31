@@ -11,9 +11,16 @@ export class LoginService {
   }
 
   efetuarLogin(usuario : string, senha:string):Observable<any>{
-    let body = {email:usuario,senha:senha}
+    let body = {email:usuario,senha:senha};
       return this.http.post("http://kutovapp-api.herokuapp.com/api/external/login",body).map(
         data => data.json())
+  }
+
+  cadastrarUsuario(nome:string,email:string,senha :string,):Observable<any>{
+    let body ={nome:nome,email:email,senha:senha};
+    return this.http.post("http://kutovapp-api.herokuapp.com/api/usuarios",body).map(
+      data => data.json()
+    )
   }
 
 }

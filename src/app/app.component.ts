@@ -46,6 +46,8 @@ export class MyApp {
   }
 
   logoff(){
-     this.nav.setRoot(Login);
+    window.localStorage.removeItem("session-token");
+    window.localStorage.removeItem("session-userid");
+    this.nav.setRoot(Login);
   }
 }

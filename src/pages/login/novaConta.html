@@ -4,21 +4,27 @@
       <ion-col text-center class="titulo">Nova Conta</ion-col>
     </ion-row>
        <ion-list>
+      <form name="formNovo" #novo>
+        <ion-item>
+          <ion-label>Nome</ion-label>
+          <ion-input type="text" value="" [(ngModel)]="nome" name="nome"></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Username</ion-label>
-        <ion-input type="text" value=""></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label>E-mail</ion-label>
+          <ion-input type="email" value="" [(ngModel)]="email" name="email"></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Password</ion-label>
-        <ion-input type="password" value=""></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label>Senha</ion-label>
+          <ion-input type="password" value="" [(ngModel)]="pass" name="pass"></ion-input>
+        </ion-item>
+      </form>
 
     </ion-list>
 
     <div padding>
-      <button ion-button color="primary" block>
+      <button ion-button color="primary" block (click)="cadastrar()">
           <ion-icon ios="ios-person-add" md="md-person-add"></ion-icon>
             &nbsp;Criar Conta
           </button>
