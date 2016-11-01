@@ -15,17 +15,24 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = Login;
-  date =  new Date();
+  usuarioLogado: string = "";
+  emailLogado: string = "";
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, private loginserv : LoginService) {
+  constructor(public platform: Platform, public loginserv : LoginService) {
     this.initializeApp();
 
+    let token = JSON.parse(window.localStorage.getItem("session-token"));
+    let id = JSON.parse(window.localStorage.getItem("session-userid"));
+
+    if(token && id){
+        this.rootPage = Sobre;
+    }
+     
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Projetos', component: Page1 },
-      { title: 'Tarefas', component: Page2 },
       { title: 'Sobre', component: Sobre }
     ];
 
@@ -50,10 +57,10 @@ export class MyApp {
   //ngOnInit() { this.getinfo(); }
 
   getinfo(){
-    let token = JSON.parse(window.localStorage.getItem("session-token"));
     this.loginserv.memberinfo().subscribe(
       any => {
           this.loginserv.usuarioLogado = any.nome;
+          this.loginserv.emailUsuario = any.email;
         }, 
     )
   }

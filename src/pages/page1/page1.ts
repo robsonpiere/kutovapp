@@ -24,7 +24,6 @@ export class Page1 {
     this.projservice.getProjetos().subscribe(
         any => {
           this.projetos = any;
-          console.log(this.projetos);
           loader.dismiss();
         },
        )

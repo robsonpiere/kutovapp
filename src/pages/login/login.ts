@@ -13,8 +13,8 @@ export class Login {
  constructor(public nav: NavController, public menu : MenuController,public loadingCtrl: LoadingController,public modalCtrl: ModalController, private loginserv :LoginService, private alertCtrl: AlertController) {
 
    this.menu.swipeEnable(false,"menuprincipal");
-    window.localStorage.removeItem("session-token");
-    window.localStorage.removeItem("session-userid");
+    //window.localStorage.removeItem("session-token");
+    //window.localStorage.removeItem("session-userid");
   }
 
     usuario:string;
@@ -92,7 +92,8 @@ export class modalNovaconta {
   cadastrar(){
     let loader = this.loadingCtrl.create({
           content: "Efetuando cadastro",
-    }); 
+    });
+    loader.present(); 
     this.loginserv.cadastrarUsuario(this.nome,this.email,this.pass).subscribe(
       any => {
           this.resposta = any;

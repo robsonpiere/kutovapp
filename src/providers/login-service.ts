@@ -7,9 +7,11 @@ import {Observable} from 'rxjs/Observable';
 export class LoginService {
 
   public usuarioLogado : string;
+  public emailUsuario : string;
 
   constructor(public http: Http) {
     this.usuarioLogado = "";
+    this.emailUsuario = "";
   }
 
   efetuarLogin(usuario : string, senha:string):Observable<any>{

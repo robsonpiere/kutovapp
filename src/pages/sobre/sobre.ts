@@ -14,7 +14,7 @@ import {LoginService} from '../../providers/login-service';
 })
 export class Sobre {
 
-  constructor(public navCtrl: NavController,private loginserv : LoginService) {}
+  constructor(public navCtrl: NavController,public loginserv : LoginService) {}
 
   ionViewDidLoad() {
     console.log('Hello Sobre Page');
@@ -28,6 +28,7 @@ export class Sobre {
     this.loginserv.memberinfo().subscribe(
       any => {
           this.loginserv.usuarioLogado = any.nome;
+          this.loginserv.emailUsuario = any.email;
         }, 
     )
   }
