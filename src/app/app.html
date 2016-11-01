@@ -6,6 +6,13 @@
   </ion-header>
 
   <ion-content class="menu">
+      <ion-item>
+        <ion-avatar item-left>
+          <img src="https://static.omelete.uol.com.br/media/extras/conteudos/dead_zm2AXT7.jpg">
+        </ion-avatar>
+      <h2>Bem vindo {{loginserv.usuarioLogado}}!</h2>
+      <p>{{date | date:'dd/MM/yyyy'}}</p>
+    </ion-item>
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}

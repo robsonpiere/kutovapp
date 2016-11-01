@@ -1,5 +1,5 @@
 <ion-content>
- 
+ <form #formLogin="ngForm" >
   <div padding  id="cloud-layer">
  
     <ion-row>
@@ -13,29 +13,33 @@
  
     <ion-row>
       <ion-col>
+        
         <ion-list>
  
           <ion-item>
             <ion-label>Usuário</ion-label>
-            <ion-input type="text" [(ngModel)]="usuario"></ion-input>
+            <ion-input type="email" [(ngModel)]="usuario" name="usuario" required></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label>Senha</ion-label>
-            <ion-input type="password" [(ngModel)]="senha"></ion-input>
+            <ion-input type="password" [(ngModel)]="senha" name="senha" required></ion-input>
           </ion-item>
+          
  
         </ion-list>
+      
       </ion-col>
     </ion-row>
  
     <ion-row>
       <ion-col>
-        <button ion-button full (click)="login()">Login</button>
+        <button ion-button full (click)="login()" [disabled]="!formLogin.valid">Login</button>
         <button ion-button full color="secondary" (click)="novaConta()">Criar Conta</button>
       </ion-col>
     </ion-row>
    </div>
+     </form>
  </ion-content>
  <ion-footer center text-center>
    Tópicos Especiais Puc Minas 2016

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import {LoginService} from '../../providers/login-service';
 
 /*
   Generated class for the Sobre page.
@@ -13,10 +14,22 @@ import { NavController } from 'ionic-angular';
 })
 export class Sobre {
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController,private loginserv : LoginService) {}
 
   ionViewDidLoad() {
     console.log('Hello Sobre Page');
+  }
+
+  ngOnInit(){
+    this.getinfo();
+  };
+
+  getinfo(){
+    this.loginserv.memberinfo().subscribe(
+      any => {
+          this.loginserv.usuarioLogado = any.nome;
+        }, 
+    )
   }
 
 }
