@@ -17,4 +17,20 @@ export class ProjetoService {
     return this.http.get(url).map(data => data.json());
   }
 
+  criaProjeto(nome:string):Observable<any>{
+    let body = {
+      nome:nome,
+      usuario:JSON.parse(window.localStorage.getItem("session-userid"))
+    };
+    return this.http.post("http://kutovapp-api.herokuapp.com/api/projetos/",body).map(
+      data => data.json()
+      );
+  }
+
+  apagaProjeto(id:string):Observable<any>{
+   return this.http.delete("http://kutovapp-api.herokuapp.com/api/projetos/"+id).map(
+      data => data.json()
+      );
+  }
+
 }

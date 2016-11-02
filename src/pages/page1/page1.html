@@ -10,7 +10,7 @@
 <ion-content padding>
  <ion-list>
     <ion-fab bottom right>
-    <button ion-fab color="dark"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color="dark" (click)="novoProjeto()"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
       <ion-item-sliding *ngFor="let projeto of projetos">
           <ion-item>
@@ -24,7 +24,7 @@
               <ion-icon name="archive"></ion-icon>
                 Visualizar
             </button>
-            <button ion-button color="danger">
+            <button ion-button color="danger" (click)="deletar(projeto)">
               <ion-icon name="trash" ></ion-icon>
                 Deletar
             </button>

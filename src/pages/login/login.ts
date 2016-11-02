@@ -10,7 +10,12 @@ import {LoginService} from '../../providers/login-service';
 })
 export class Login {
 
- constructor(public nav: NavController, public menu : MenuController,public loadingCtrl: LoadingController,public modalCtrl: ModalController, private loginserv :LoginService, private alertCtrl: AlertController) {
+ constructor(public nav: NavController, 
+ public menu : MenuController,
+ public loadingCtrl: LoadingController,
+ public modalCtrl: ModalController, 
+ private loginserv :LoginService, 
+ private alertCtrl: AlertController) {
 
    this.menu.swipeEnable(false,"menuprincipal");
     //window.localStorage.removeItem("session-token");

@@ -3,7 +3,7 @@ import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { Login ,modalNovaconta} from '../pages/login/login';
-import { Page1 } from '../pages/page1/page1';
+import { Page1, modalNovoProjeto } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 import {Sobre} from '../pages/sobre/sobre';
 
@@ -18,7 +18,8 @@ import{LoginService} from '../providers/login-service';
     modalNovaconta,
     Page1,
     Page2,
-    Sobre
+    Sobre,
+    modalNovoProjeto
     
   ],
   imports: [
@@ -31,8 +32,8 @@ import{LoginService} from '../providers/login-service';
     modalNovaconta,
     Page1,
     Page2,
-    Sobre
-    
+    Sobre,
+    modalNovoProjeto 
   ],
   providers: [ProjetoService,LoginService]
 })
