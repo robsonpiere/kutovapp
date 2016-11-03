@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {ProjetoService} from '../../providers/projeto-service';
-import { NavController,MenuController, LoadingController ,ModalController,Platform, NavParams, ViewController,AlertController} from 'ionic-angular';
+import { NavController, LoadingController ,ModalController,Platform, NavParams, ViewController,AlertController} from 'ionic-angular';
 import {TarefaPage} from '../tarefa-page/tarefa-page';
 
 @Component({
