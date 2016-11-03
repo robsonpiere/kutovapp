@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {ProjetoService} from '../../providers/projeto-service';
 import { NavController,MenuController, LoadingController ,ModalController,Platform, NavParams, ViewController,AlertController} from 'ionic-angular';
+import {TarefaPage} from '../tarefa-page/tarefa-page';
 
 @Component({
   selector: 'page-page1',
@@ -29,8 +30,10 @@ export class Page1 {
        )
   }
 
-  visualizar(item){
-    console.log(item);
+  visualizar(projeto){
+    this.navCtrl.push(TarefaPage, {
+      projeto: projeto
+    });
   }
 
   deletar(projeto){
