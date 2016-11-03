@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController,NavParams } from 'ionic-angular';
 
+import{TarefaService} from '../../providers/tarefa-service';
+
 /*
   Generated class for the TarefaPage page.
 
@@ -14,13 +16,34 @@ import { NavController,NavParams } from 'ionic-angular';
 export class TarefaPage {
 
   projeto:any;
+  tipoTarefa : string = "pendentes";
+  tarefasPendentes:any = [];
+  tarefasConcluidas:any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public tarefaserv: TarefaService) {
     this.projeto = navParams.get('projeto');
   }
 
   ionViewDidLoad() {
-    console.log('Hello TarefaPage Page');
+   this.getTarefas(this.projeto._id);
+  }
+
+  getTarefas(idprojeto:string){
+    this.tarefaserv.getTarefas(idprojeto).subscribe(
+      any => {
+              any.forEach(tarefa =>  {
+                if (tarefa.flgConcluida) {
+                  this.tarefasConcluidas.push(tarefa);
+                }else{
+                  this.tarefasPendentes.push(tarefa);
+                }
+              });
+
+      }
+    )
+
+
   }
 
 }

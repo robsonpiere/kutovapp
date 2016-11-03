@@ -9,10 +9,72 @@
   <ion-navbar>
     <ion-title>Projeto: {{projeto.nome}}</ion-title>
   </ion-navbar>
+    <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="tipoTarefa">
+      <ion-segment-button value="pendentes">
+        Pendentes
+      </ion-segment-button>
+      <ion-segment-button value="concluidas">
+        Concluidas
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 
 </ion-header>
 
+<ion-content>
+  <ion-fab bottom right>
+    <button ion-fab color="primary" (click)="novoProjeto()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+  <div [ngSwitch]="tipoTarefa">
+    <ion-list *ngSwitchCase="'pendentes'">
+      <ion-item-sliding *ngFor="let tarefa of tarefasPendentes">
+          <ion-item>
+            <ion-avatar item-left>
+               <img src="assets/images/triste_black.png">
+            </ion-avatar>
+            {{tarefa.descricao}}
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button>
+              <ion-icon name="archive"></ion-icon>
+                Ver
+            </button>
+            <button ion-button color="secondary">
+              <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
+                Concluir
+            </button>
+            <button ion-button color="danger">
+              <ion-icon name="trash" ></ion-icon>
+                Deletar
+            </button>
+          </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
 
-<ion-content padding>
-
+    <ion-list *ngSwitchCase="'concluidas'">
+      <ion-item-sliding *ngFor="let tarefa of tarefasConcluidas">
+          <ion-item>
+            <ion-avatar item-left>
+               <img src="assets/images/feliz_black.png">
+            </ion-avatar>
+            {{tarefa.descricao}}
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button>
+              <ion-icon name="archive"></ion-icon>
+                Ver
+            </button>
+            <button ion-button color="secondary">
+              <ion-icon ios="ios-rewind" md="md-rewind"></ion-icon>
+                Retomar
+            </button>
+            <button ion-button color="danger">
+              <ion-icon name="trash" ></ion-icon>
+                Deletar
+            </button>
+          </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
 </ion-content>

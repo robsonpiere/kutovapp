@@ -9,6 +9,7 @@ import {TarefaPage} from '../pages/tarefa-page/tarefa-page';
 
 import{ProjetoService} from '../providers/projeto-service';
 import{LoginService} from '../providers/login-service';
+import{TarefaService} from '../providers/tarefa-service';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import{LoginService} from '../providers/login-service';
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
-      backButtonText: 'Voltar'
+      backButtonText: 'Voltar',
     }, {}
   )],
   bootstrap: [IonicApp],
@@ -36,6 +37,6 @@ import{LoginService} from '../providers/login-service';
     modalNovoProjeto ,
     TarefaPage
   ],
-  providers: [ProjetoService,LoginService]
+  providers: [ProjetoService,LoginService,TarefaService]
 })
 export class AppModule {}
