@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController ,ModalController, NavParams, ViewController,AlertController} from 'ionic-angular';
+import { NavController, LoadingController, NavParams, ViewController,AlertController} from 'ionic-angular';
 import{TarefaService} from '../../providers/tarefa-service';
 
 /*
@@ -83,9 +83,14 @@ export class TarefaPage {
 
   }
 
+//exibe a tela de nova tarefa
   novaTarefa(){
-    console.log("nova tarefa clicada");
+      this.navCtrl.push(NovaTarefaPage,
+          {projeto:this.projeto}
+      );
   }
+
+
 
   promptConcluirTarefa(tarefa){
 
@@ -181,6 +186,60 @@ export class TarefaPage {
   templateUrl: 'novaTarefa.html'
 })
 export class NovaTarefaPage  {
-  constructor() { }
+
+  projetoPai : any;
+  descricao: string;
+  projeto: string;
+  dataLimite: Date;
+  prioridade:number = 1;
+  flgConcluida: boolean;
+
+  constructor(
+      public navParams: NavParams,
+      public tarefaserv : TarefaService,
+      public alertCtrl:AlertController,
+      public loadCtlr:LoadingController
+  ){
+      this.projetoPai = this.navParams.get("projeto");
+      this.projeto = this.projetoPai._id;
+   }
+
+   novaTarefa(){
+     let loader =  this.loadCtlr.create({
+           content: "Salvando",
+    });
+     let tarefa = {
+      flgConcluida:this.flgConcluida,
+      descricao:this.descricao,
+      dataLimite:  this.dataLimite,
+      prioridade :this.prioridade,
+      projeto:this.projeto
+
+     };
+     let resposta:any;
+     this.tarefaserv.novaTarefa(tarefa).subscribe(
+        any =>{
+            resposta = any;
+            loader.dismiss();
+            if(resposta.success){
+              this.mensagem("Sucesso",resposta.message);
+            }
+            else{
+              this.mensagem("Erro",resposta.message);
+            }          
+        }
+     )
+   }
+
+    mensagem(titulo:string,subtitulo:string){
+       
+        let alert = this.alertCtrl.create({
+        title: titulo,
+        subTitle: subtitulo,
+        buttons: ["Fechar"]
+        });
+        alert.present();
+    }
+
 
 }

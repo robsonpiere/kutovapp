@@ -1,8 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    Nova Tarefa: {{projetoPai.nome}}
+  </ion-navbar>
+</ion-header>
 <ion-content>
-    <ion-row>
-        <ion-col text-center>Nova Tarefa</ion-col>
-    </ion-row>
-    <ion-row>
-           Eeis aqui a tela de criação de novas tarefas     
-    </ion-row>
+        <form name="formNovaTarefa" #formNovaTarefa="ngForm">
+
+            <ion-list>
+                <ion-list-header>Informações</ion-list-header> 
+                <ion-item>
+                    <ion-label>Descrição</ion-label>
+                    <ion-input type="text" value="" [(ngModel)]="descricao" name="descricao" required></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Data Limite</ion-label>
+                    <ion-input type="date" value="" [(ngModel)]="dataLimite" name="dataLimite" required></ion-input>
+                </ion-item>
+            </ion-list>
+ 
+             <ion-list>            
+                <ion-list-header>Prioridade<ion-badge item-right>{{prioridade}}</ion-badge></ion-list-header>
+                <ion-item>             
+                    <ion-range min="1" max="5" step="1" snaps="true"  [(ngModel)]="prioridade"  name="prioridade">
+                        <ion-label range-left>1</ion-label>
+                        <ion-label range-right>5</ion-label>
+                    </ion-range>
+                </ion-item>
+             </ion-list>
+            <ion-list>
+                <ion-list-header>Conlusão</ion-list-header>
+                    <ion-item>
+                <ion-label>Tarefa concluida ?</ion-label>
+                <ion-checkbox color="secondary" name="flgConcluida" [(ngModel)]="flgConcluida"></ion-checkbox>
+                </ion-item>
+            </ion-list>
+             <button ion-button type="submit" (click)="novaTarefa()" [disabled]="!formNovaTarefa.valid">Cadastrar</button>
+
+
+        </form>
 </ion-content>
