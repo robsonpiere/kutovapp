@@ -8,6 +8,7 @@ export class LoginService {
 
   public usuarioLogado : string;
   public emailUsuario : string;
+  public fotoLogado: string;
 
   constructor(public http: Http) {
     this.usuarioLogado = "";
@@ -20,11 +21,18 @@ export class LoginService {
         data => data.json())
   }
 
-  cadastrarUsuario(nome:string,email:string,senha :string,):Observable<any>{
-    let body ={nome:nome,email:email,senha:senha};
+  cadastrarUsuario(nome:string,email:string,senha :string,foto:string):Observable<any>{
+    let body ={nome:nome,email:email,senha:senha,foto:foto};
     return this.http.post("http://kutovapp-api.herokuapp.com/api/usuarios",body).map(
       data => data.json()
     )
+  }
+
+  alterarFoto(foto:string,id:string):Observable<any>{
+      let body = {foto:foto};
+      return this.http.put("http://kutovapp-api.herokuapp.com/api/usuarios/"+id,body).map(
+        data => data.json()
+      )
   }
 
   memberinfo():Observable<any>{

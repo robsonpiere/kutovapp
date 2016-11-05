@@ -6,6 +6,7 @@ import { Login ,modalNovaconta} from '../pages/login/login';
 import { Page1, modalNovoProjeto } from '../pages/page1/page1';
 import {Sobre} from '../pages/sobre/sobre';
 import {TarefaPage,NovaTarefaPage} from '../pages/tarefa-page/tarefa-page';
+import {Perfil} from '../pages/perfil/perfil';
 
 import{ProjetoService} from '../providers/projeto-service';
 import{LoginService} from '../providers/login-service';
@@ -21,7 +22,8 @@ import{TarefaService} from '../providers/tarefa-service';
     Sobre,
     modalNovoProjeto,
     TarefaPage,
-    NovaTarefaPage 
+    NovaTarefaPage,
+    Perfil
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -37,7 +39,8 @@ import{TarefaService} from '../providers/tarefa-service';
     Sobre,
     modalNovoProjeto ,
     TarefaPage,
-    NovaTarefaPage
+    NovaTarefaPage,
+    Perfil
   ],
   providers: [ProjetoService,LoginService,TarefaService]
 })

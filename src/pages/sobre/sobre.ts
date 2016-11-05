@@ -29,6 +29,7 @@ export class Sobre {
       any => {
           this.loginserv.usuarioLogado = any.nome;
           this.loginserv.emailUsuario = any.email;
+          this.loginserv.fotoLogado = any.foto;
         }, 
     )
   }

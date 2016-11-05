@@ -23,11 +23,25 @@ export class Page1 {
   
 
   getProjetos(){ 
+    let loader = this.loadingCtrl.create({
+          content: "Carregando projetos...",
+      });
+      loader.present();
     this.projservice.getProjetos().subscribe(
         any => {
+          loader.dismiss();
           this.projetos = any;
         },
        )
+  }
+
+  atualizarProjetos(){
+      this.projservice.getProjetos().subscribe(
+        any => {          
+          this.projetos = any;
+        },
+       )
+
   }
 
   visualizar(projeto){
@@ -101,7 +115,7 @@ export class Page1 {
                   loader.dismiss();
                   if(resposta.success){
                       this.mensagem("Sucesso",resposta.message);
-                      this.getProjetos();
+                      this.atualizarProjetos();
                   }else{
                       this.mensagem("Erro",resposta.message);
                   }
@@ -121,7 +135,7 @@ export class Page1 {
                   loader.dismiss();
                   if(resposta.message){
                       this.mensagem("Mensagem",resposta.message);
-                      this.getProjetos();
+                      this.atualizarProjetos();
                   }else{
                       this.mensagem("Erro","Erro ao excluir o projeto");
                   }
@@ -139,6 +153,9 @@ export class Page1 {
     }
 }
 
+
+
+//Não está sendo utlizado, fiz usando prompt
 @Component({
   selector:'page-modal-novoProjeto',
   templateUrl:'novoProjeto.html'

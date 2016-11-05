@@ -1,0 +1,33 @@
+<!--
+  Generated template for the Perfil page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Alterar foto</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <h2>Aqui você pode tirar uma foto para exibir no seu perfil:</h2>
+      <img src="{{ base64Image }}" *ngIf="base64Image" />
+      
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+
+<ion-footer padding>
+      <button ion-button type="button" (click)="tirarFoto()"><ion-icon ios="ios-camera" md="md-camera"></ion-icon>&nbsp;Tirar foto</button>
+      <button ion-button type="button" color="secondary" (click)="salvarFoto()"><ion-icon ios="ios-cloud-upload" md="md-cloud-upload"></ion-icon>&nbsp;Enviar foto</button>
+</ion-footer>
+
+

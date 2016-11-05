@@ -99,7 +99,7 @@ export class modalNovaconta {
           content: "Efetuando cadastro",
     });
     loader.present(); 
-    this.loginserv.cadastrarUsuario(this.nome,this.email,this.pass).subscribe(
+    this.loginserv.cadastrarUsuario(this.nome,this.email,this.pass,"assets/images/feliz_black.png").subscribe(
       any => {
           this.resposta = any;
           loader.dismiss();

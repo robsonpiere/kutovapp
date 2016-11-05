@@ -5,6 +5,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { Login } from '../pages/login/login';
 import { Page1 } from '../pages/page1/page1';
 import {Sobre} from '../pages/sobre/sobre';
+import{Perfil} from '../pages/perfil/perfil';
 import {LoginService} from '../providers/login-service';
 
 @Component({
@@ -16,6 +17,7 @@ export class MyApp {
   rootPage: any = Login;
   usuarioLogado: string = "";
   emailLogado: string = "";
+  fotoLogado:string = "";
 
   pages: Array<{title: string, component: any}>;
 
@@ -32,7 +34,9 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Projetos', component: Page1 },
+      {title: "Alterar Foto",component:Perfil},
       { title: 'Sobre', component: Sobre }
+      
     ];
 
   }
@@ -60,6 +64,7 @@ export class MyApp {
       any => {
           this.loginserv.usuarioLogado = any.nome;
           this.loginserv.emailUsuario = any.email;
+          this.loginserv.fotoLogado = any.foto;
         }, 
     )
   }
