@@ -60,7 +60,7 @@ export class MyApp {
   //ngOnInit() { this.getinfo(); }
 
   getinfo(){
-    this.loginserv.memberinfo().subscribe(
+    this.loginserv.getUsuariologado().subscribe(
       any => {
           this.loginserv.usuarioLogado = any.nome;
           this.loginserv.emailUsuario = any.email;

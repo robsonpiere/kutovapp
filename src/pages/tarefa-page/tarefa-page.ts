@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController ,ModalController,Platform, NavParams, ViewController,AlertController} from 'ionic-angular';
+import { NavController, LoadingController ,ModalController, NavParams, ViewController,AlertController} from 'ionic-angular';
 import{TarefaService} from '../../providers/tarefa-service';
 
 /*

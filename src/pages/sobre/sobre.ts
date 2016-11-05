@@ -25,7 +25,7 @@ export class Sobre {
   };
 
   getinfo(){
-    this.loginserv.memberinfo().subscribe(
+    this.loginserv.getUsuariologado().subscribe(
       any => {
           this.loginserv.usuarioLogado = any.nome;
           this.loginserv.emailUsuario = any.email;

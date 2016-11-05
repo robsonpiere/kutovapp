@@ -28,6 +28,13 @@ export class LoginService {
     )
   }
 
+  getUsuariologado():Observable<any>{
+    let id = JSON.parse(window.localStorage.getItem("session-userid"));
+        return this.http.get("http://kutovapp-api.herokuapp.com/api/usuarios/"+id).map(
+          data => data.json()
+        )
+  }
+
   alterarFoto(foto:string,id:string):Observable<any>{
       let body = {foto:foto};
       return this.http.put("http://kutovapp-api.herokuapp.com/api/usuarios/"+id,body).map(
@@ -39,7 +46,7 @@ export class LoginService {
     let token = JSON.parse(window.localStorage.getItem("session-token"));
     let headers = new Headers({ 'Authorization': token});
     let options = new RequestOptions({ headers: headers });
-    return this.http.get("http://kutovapp-api.herokuapp.com/api/auth/memberinfo",options).map(
+    return this.http.post("http://kutovapp-api.herokuapp.com/api/auth/memberinfo",{},options).map(
       data => data.json()
     )
   }
