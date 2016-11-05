@@ -44,6 +44,16 @@ export class Page1 {
 
   }
 
+  atualizarProjetosSwipe(refresher){
+      this.projservice.getProjetos().subscribe(
+        any => {          
+          this.projetos = any;
+          refresher.complete();
+        },
+       )
+
+  }
+
   visualizar(projeto){
     this.navCtrl.push(TarefaPage, {
       projeto: projeto

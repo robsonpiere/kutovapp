@@ -23,8 +23,16 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="atualizarTarefasSwipe($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Puxe para atualizar"
+      refreshingSpinner="circles"
+      refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-fab bottom right>
-    <button ion-fab color="primary"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color="primary" (click)="novaTarefa()"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
   <div [ngSwitch]="tipoTarefa">
     <ion-list *ngSwitchCase="'pendentes'">
@@ -40,7 +48,7 @@
               <ion-icon name="archive"></ion-icon>
                 Ver
             </button>
-            <button ion-button color="secondary">
+            <button ion-button color="secondary"(click)="promptConcluirTarefa(tarefa)">
               <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
                 Concluir
             </button>
@@ -65,7 +73,7 @@
               <ion-icon name="archive"></ion-icon>
                 Ver
             </button>
-            <button ion-button color="secondary">
+            <button ion-button color="secondary" (click)="promptRetomarTarefa(tarefa)">
               <ion-icon ios="ios-rewind" md="md-rewind"></ion-icon>
                 Retomar
             </button>

@@ -33,12 +33,33 @@ export class TarefaService {
     return this.http.post(url,body).map(data => data.json());
   }
 
-  atualizarTarefa(){
-
+  atualizarTarefa(tarefa:any):Observable<any>{
+    let url = "http://kutovapp-api.herokuapp.com/api/tarefas/"+tarefa._id;
+        let body = {
+        projeto:tarefa.projeto,
+        descricao:tarefa.descricao,
+        dataLimite:tarefa.dataLimite,
+        prioridade:tarefa.prioridade,
+        flgConcluida:tarefa.flgConcluida,
+    }
+    return this.http.put(url,body).map(data => data.json());
   }
 
-  removerTarefa(){
-    
+  removerTarefa(id:string):Observable<any>{
+    let url = "http://kutovapp-api.herokuapp.com/api/tarefas/"+id;
+    return this.http.delete(url).map(data =>data.json());
+  }
+
+  completarTarefa(id:string):Observable<any>{
+    let url = "http://kutovapp-api.herokuapp.com/api/tarefas/"+id;
+    let body = {flgConcluida:1};
+    return this.http.put(url,body).map(data => data.json());
+  }
+
+  retomarTarefa(id:string):Observable<any>{
+    let url = "http://kutovapp-api.herokuapp.com/api/tarefas/"+id;
+    let body = {flgConcluida:0};
+    return this.http.put(url,body).map(data => data.json());
   }
 
 }
