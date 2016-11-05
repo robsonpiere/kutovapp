@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,NavParams } from 'ionic-angular';
-
+import { NavController, LoadingController ,ModalController,Platform, NavParams, ViewController,AlertController} from 'ionic-angular';
 import{TarefaService} from '../../providers/tarefa-service';
 
 /*
@@ -45,5 +44,14 @@ export class TarefaPage {
 
 
   }
+
+}
+
+@Component({
+  selector: 'nova-tarefa-page',
+  templateUrl: 'novaTarefa.html'
+})
+export class NovaTarefaPage  {
+  constructor() { }
 
 }
