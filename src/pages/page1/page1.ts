@@ -71,7 +71,35 @@ export class Page1 {
     });
     confirm.present();
     
-    
+  }
+
+  atualizar(projeto){
+    let prompt  = this.alertCtrl.create({
+      title: 'Renomear Projeto',
+      message: "Informe um novo nome para o projeto " + projeto.nome,
+      inputs:[
+        {
+          name:'nomeprojeto',
+          placeholder:"Nome do projeto"
+        },
+      ],
+      buttons:[
+        {
+          text: "Cancelar",
+          handler: data =>{
+              console.log("cancelar");
+          }
+        },
+        {
+          text:"Salvar",
+          handler: data=>{
+            this.alterarProjeto(projeto._id,data.nomeprojeto);
+          }
+        }
+        
+      ]
+    });
+    prompt.present();
   }
 
   novoProjeto(){
@@ -141,6 +169,26 @@ export class Page1 {
                   }
          }
        ) 
+  }
+
+  alterarProjeto(id:string,nome:string){
+    let resposta :any;
+      let loader = this.loadingCtrl.create({
+          content: "Alterando",
+      });
+      loader.present();
+      this.projservice.alterarProjeto(id,nome).subscribe(
+        any =>{
+          resposta = any;
+          loader.dismiss();
+          if(resposta.success){
+                this.mensagem("Sucesso",resposta.message);
+                this.atualizarProjetos();
+          }else{
+               this.mensagem("Erro","Erro ao atualizar o projeto");
+          }
+        }
+      )
   }
 
   mensagem(titulo:string,subtitulo:string){

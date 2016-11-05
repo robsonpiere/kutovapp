@@ -33,4 +33,14 @@ export class ProjetoService {
       );
   }
 
+  alterarProjeto(id:string,nome:string):Observable<any>{
+    let body = {
+      nome:nome
+    }
+     return this.http.put("http://kutovapp-api.herokuapp.com/api/projetos/"+id,body).map(
+      data => data.json()
+      );
+
+  }
+
 }
