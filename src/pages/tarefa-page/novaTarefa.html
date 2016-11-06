@@ -10,14 +10,13 @@
         <form name="formNovaTarefa" #formNovaTarefa="ngForm">
 
             <ion-list>
-                <ion-list-header>Informações</ion-list-header> 
                 <ion-item>
                     <ion-label>Descrição</ion-label>
                     <ion-input type="text" value="" [(ngModel)]="descricao" name="descricao" required></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label>Data Limite</ion-label>
-                    <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" min="2016" max="2020" [(ngModel)]="dataLimite" name="dataLimite"></ion-datetime>
+                    <ion-datetime displayFormat="DD MMMM YYYY" pickerFormat="DD MMMM YYYY" min="2016" max="2020" [(ngModel)]="dataLimite" name="dataLimite" monthNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro" cancelText="Cancelar" doneText="Selecionar"></ion-datetime>
                 </ion-item>
             </ion-list>
  
@@ -31,7 +30,6 @@
                 </ion-item>
              </ion-list>
             <ion-list>
-                <ion-list-header>Conlusão</ion-list-header>
                     <ion-item>
                 <ion-label>Tarefa concluida ?</ion-label>
                 <ion-checkbox [color]="obterCor(prioridade)" name="flgConcluida" [(ngModel)]="flgConcluida"></ion-checkbox>
