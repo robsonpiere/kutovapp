@@ -146,23 +146,29 @@ export class Page1 {
   }
 
   gravarNovoProjeto(nome:string){
-    let resposta :any;
-    let loader = this.loadingCtrl.create({
-          content: "Salvando",
-      });
-      loader.present();
-       this.projservice.criaProjeto(nome).subscribe(
-         any =>{
-                  resposta = any ;
-                  loader.dismiss();
-                  if(resposta.success){
-                      this.mensagem("Sucesso",resposta.message);
-                      this.atualizarProjetos();
-                  }else{
-                      this.mensagem("Erro",resposta.message);
-                  }
-         }
-       ) 
+
+    if(nome.length == 0){
+        this.mensagem("Oops","O nome do projeto não pode ser vazio");
+    }
+    else{
+      let resposta :any;
+      let loader = this.loadingCtrl.create({
+            content: "Salvando",
+        });
+        loader.present();
+        this.projservice.criaProjeto(nome).subscribe(
+          any =>{
+                    resposta = any ;
+                    loader.dismiss();
+                    if(resposta.success){
+                        this.mensagem("Sucesso",resposta.message);
+                        this.atualizarProjetos();
+                    }else{
+                        this.mensagem("Erro",resposta.message);
+                    }
+          }
+        )
+    } 
   }
 
   apagarProjeto(id:string){

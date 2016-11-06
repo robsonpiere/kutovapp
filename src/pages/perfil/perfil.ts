@@ -43,7 +43,8 @@ export class Perfil {
         }).then(imageData => {
             this.base64Image = "data:image/jpeg;base64," + imageData;
         }, error => {
-            console.log("ERROR -> " + JSON.stringify(error));
+            console.log("ERROR -> " + JSON.stringify(error));            
+            this.mensagem("Oops", JSON.stringify(error) + " - Você está em um dispostivo móvel ?");
         });
   }
 
