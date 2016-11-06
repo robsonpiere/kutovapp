@@ -16,10 +16,6 @@ export class Sobre {
 
   constructor(public navCtrl: NavController,public loginserv : LoginService) {}
 
-  ionViewDidLoad() {
-    console.log('Hello Sobre Page');
-  }
-
   ngOnInit(){
     this.getinfo();
   };

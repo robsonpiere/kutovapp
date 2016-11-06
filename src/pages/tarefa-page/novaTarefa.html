@@ -17,7 +17,7 @@
                 </ion-item>
                 <ion-item>
                     <ion-label>Data Limite</ion-label>
-                    <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="dataLimite" name="dataLimite"></ion-datetime>
+                    <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" min="2016" max="2020" [(ngModel)]="dataLimite" name="dataLimite"></ion-datetime>
                 </ion-item>
             </ion-list>
  
@@ -38,8 +38,8 @@
                 </ion-item>
             </ion-list>
             <ion-row>
-             <button ion-button type="submit" (click)="novaTarefa()" [disabled]="!formNovaTarefa.valid">Cadastrar</button>
-             <button ion-button type="button" color="danger" (click)="sair()" >Cancelar</button>
+             <button ion-button type="submit" (click)="novaTarefa()" [disabled]="!formNovaTarefa.valid"><ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>&nbsp;Cadastrar</button>
+             <button ion-button type="button" color="danger" (click)="sair()" ><ion-icon ios="ios-arrow-round-back" md="md-arrow-round-back"></ion-icon>&nbsp;Cancelar</button>
             </ion-row>
 
 

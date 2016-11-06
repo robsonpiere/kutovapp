@@ -57,7 +57,9 @@ export class MyApp {
     this.getinfo();
   }
 
-  //ngOnInit() { this.getinfo(); }
+ ionViewDidLoad() {
+    this.getinfo();
+  }
 
   getinfo(){
     this.loginserv.getUsuariologado().subscribe(

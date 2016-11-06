@@ -46,7 +46,7 @@
           </ion-item>
           <ion-item-options side="right">
             <button ion-button (click)="editarTarefa(tarefa)">
-              <ion-icon name="archive"></ion-icon>
+              <ion-icon ios="ios-sync" md="md-sync"></ion-icon>
                 Ver/Alterar
             </button>
             <button ion-button color="secondary"(click)="promptConcluirTarefa(tarefa)">
@@ -71,8 +71,8 @@
             <ion-badge [color]="obterCor(tarefa.prioridade)" item-right>{{tarefa.prioridade}}</ion-badge>
           </ion-item>
           <ion-item-options side="right">
-            <button ion-button>
-              <ion-icon name="archive" (click)="editarTarefa(tarefa)"></ion-icon>
+            <button ion-button (click)="editarTarefa(tarefa)">
+              <ion-icon ios="ios-sync" md="md-sync"></ion-icon>
                 Ver/Alterar
             </button>
             <button ion-button color="secondary" (click)="promptRetomarTarefa(tarefa)">

@@ -42,8 +42,7 @@ export class TarefaPage {
     });
 
       this.tarefaserv.getTarefas(this.projeto._id).subscribe(
-        any => {
-          loader.dismiss();
+        any => {          
                 any.forEach(tarefa =>  {
                   if (tarefa.flgConcluida) {
                     this.tarefasConcluidas.push(tarefa);
@@ -51,6 +50,7 @@ export class TarefaPage {
                     this.tarefasPendentes.push(tarefa);
                   }
                 });
+                loader.dismiss();
         }
       )
 
@@ -267,7 +267,7 @@ export class NovaTarefaPage  {
   projetoPai : any;
   descricao: string;
   projeto: string;
-  dataLimite: Date;
+  dataLimite: string;
   prioridade:number = 1;
   flgConcluida: boolean;
 
@@ -280,6 +280,7 @@ export class NovaTarefaPage  {
   ){
       this.projetoPai = this.navParams.get("projeto");
       this.projeto = this.projetoPai._id;
+      this.dataLimite = new Date().toISOString();;
    }
 
    sair(){
