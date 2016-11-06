@@ -37,19 +37,15 @@
   <div [ngSwitch]="tipoTarefa">
     <ion-list *ngSwitchCase="'pendentes'">
       <ion-item-sliding *ngFor="let tarefa of tarefasPendentes">
-          <ion-item>
+          <ion-item (click)="editarTarefa(tarefa)">
             <ion-avatar item-left>
                <img src="assets/images/triste_black.png">
             </ion-avatar>
             <h2>{{tarefa.descricao}}</h2>
             <p>Data Limite: {{tarefa.dataLimite | date:'dd-MM-y'}}</p>
-            <ion-badge [color]="obterCor(tarefa.prioridade)" item-right>{{tarefa.prioridade}}</ion-badge>
+            <ion-badge [color]="funcoes.obterCor(tarefa.prioridade)" item-right>{{tarefa.prioridade}}</ion-badge>
           </ion-item>
-          <ion-item-options side="right">
-            <button ion-button (click)="editarTarefa(tarefa)">
-              <ion-icon ios="ios-sync" md="md-sync"></ion-icon>
-                Ver/Alterar
-            </button>
+          <ion-item-options side="right">            
             <button ion-button color="secondary"(click)="promptConcluirTarefa(tarefa)">
               <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
                 Concluir
@@ -64,18 +60,14 @@
 
     <ion-list *ngSwitchCase="'concluidas'">
       <ion-item-sliding *ngFor="let tarefa of tarefasConcluidas">
-          <ion-item>
+          <ion-item (click)="editarTarefa(tarefa)">
             <ion-avatar item-left>
                <img src="assets/images/feliz_black.png">
             </ion-avatar>
             {{tarefa.descricao}}
-            <ion-badge [color]="obterCor(tarefa.prioridade)" item-right>{{tarefa.prioridade}}</ion-badge>
+            <ion-badge [color]="funcoes.obterCor(tarefa.prioridade)" item-right>{{tarefa.prioridade}}</ion-badge>
           </ion-item>
-          <ion-item-options side="right">
-            <button ion-button (click)="editarTarefa(tarefa)">
-              <ion-icon ios="ios-sync" md="md-sync"></ion-icon>
-                Ver/Alterar
-            </button>
+          <ion-item-options side="right">           
             <button ion-button color="secondary" (click)="promptRetomarTarefa(tarefa)">
               <ion-icon ios="ios-rewind" md="md-rewind"></ion-icon>
                 Retomar

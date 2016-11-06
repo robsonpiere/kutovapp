@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController, NavParams,AlertController} from 'ionic-angular';
 import{TarefaService} from '../../providers/tarefa-service';
+import {Funcoes} from '../../providers/funcoes-service';
 
 /*
   Generated class for the TarefaPage page.
@@ -24,7 +25,8 @@ export class TarefaPage {
     public navParams: NavParams, 
     public tarefaserv: TarefaService,
     public alertCtrl:AlertController,
-    public loadCtlr :LoadingController
+    public loadCtlr :LoadingController,
+    public funcoes: Funcoes
     ) {
         this.projeto = navParams.get('projeto');
     }
@@ -228,34 +230,6 @@ export class TarefaPage {
         alert.present();
     }
 
-     obterCor(numero:number):string{
-       let cor:string;
-
-       switch (numero) {
-         case 1:
-           cor = "prior1";
-           break;
-        case 2:
-           cor = "prior2";
-           break;
-       case 3:
-           cor = "prior3";
-           break;
-        case 4:
-           cor = "prior4";
-           break;
-        case 5:
-           cor = "prior5";
-           break;       
-         default:
-          cor = "dark"
-           break;
-       }
-
-       return cor;
-
-    }
-
 }
 
 @Component({
@@ -276,7 +250,8 @@ export class NovaTarefaPage  {
       public navParams: NavParams,
       public tarefaserv : TarefaService,
       public alertCtrl:AlertController,
-      public loadCtlr:LoadingController
+      public loadCtlr:LoadingController,
+      public funcoes: Funcoes
   ){
       this.projetoPai = this.navParams.get("projeto");
       this.projeto = this.projetoPai._id;
@@ -325,33 +300,6 @@ export class NovaTarefaPage  {
         alert.present();
     }
 
-    obterCor(numero:number):string{
-       let cor:string;
-
-       switch (numero) {
-         case 1:
-           cor = "favorite";
-           break;
-        case 2:
-           cor = "secondary";
-           break;
-       case 3:
-           cor = "primary";
-           break;
-        case 4:
-           cor = "danger";
-           break;
-        case 5:
-           cor = "dark";
-           break;       
-         default:
-          cor = "light"
-           break;
-       }
-
-       return cor;
-
-    }
 }
 
 @Component({
@@ -368,7 +316,8 @@ export class EditarTarefa{
       public navParams: NavParams,
       public tarefaserv : TarefaService,
       public alertCtrl:AlertController,
-      public loadCtlr:LoadingController
+      public loadCtlr:LoadingController,
+      public funcoes: Funcoes
   ){
       this.tarefa = this.navParams.get("tarefa");
    }
@@ -378,6 +327,7 @@ export class EditarTarefa{
    }
 
    alterar(){
+     
      let loader =  this.loadCtlr.create({
            content: "Salvando",
     });
@@ -408,32 +358,45 @@ export class EditarTarefa{
         alert.present();
     }
 
-    obterCor(numero:number):string{
-       let cor:string;
+     promptDeletarTarefa(){
 
-       switch (numero) {
-         case 1:
-           cor = "favorite";
-           break;
-        case 2:
-           cor = "secondary";
-           break;
-       case 3:
-           cor = "primary";
-           break;
-        case 4:
-           cor = "danger";
-           break;
-        case 5:
-           cor = "dark";
-           break;       
-         default:
-          cor = "light"
-           break;
-       }
+    let confirm = this.alertCtrl.create({
+      title:'Excluir  ? ',
+      message:'Deseja remover a Tarefa '+ this.tarefa.descricao + ' ?',
+      buttons:[
+        {
+          text:'Cancelar',
+          handler:()=>{
+            console.log('cancelado');
+          }
+        },
+        {
+          text: "Sim",
+          handler:()=>{
+            this.removerTarefa(this.tarefa._id);
+          }
+        }
+      ]
+    });
+    confirm.present();    
+  }
 
-       return cor;
+  removerTarefa(id){
+    let loader =  this.loadCtlr.create({
+           content: "Removendo",
+    });
+    let resposta : any;
+    this.tarefaserv.removerTarefa(id).subscribe(
+      any => {
+          resposta = any;
+          loader.dismiss();
+            this.mensagem("Mensagem",resposta.message);
+            this.sair();
 
-    }
+      }
+    )
+
+  }
+    
 
 }

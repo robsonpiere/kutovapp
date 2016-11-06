@@ -11,6 +11,7 @@ import {Perfil} from '../pages/perfil/perfil';
 import{ProjetoService} from '../providers/projeto-service';
 import{LoginService} from '../providers/login-service';
 import{TarefaService} from '../providers/tarefa-service';
+import{Funcoes} from '../providers/funcoes-service';
 
 
 @NgModule({
@@ -44,6 +45,6 @@ import{TarefaService} from '../providers/tarefa-service';
     Perfil,
     EditarTarefa
   ],
-  providers: [ProjetoService,LoginService,TarefaService]
+  providers: [ProjetoService,LoginService,TarefaService,Funcoes]
 })
 export class AppModule {}

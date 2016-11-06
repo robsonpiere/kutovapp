@@ -20,7 +20,7 @@
                 </ion-item>
             </ion-list> 
              <ion-list>            
-                <ion-list-header>Prioridade<ion-badge item-right [color]="obterCor(tarefa.prioridade)">{{tarefa.prioridade}}</ion-badge></ion-list-header>
+                <ion-list-header>Prioridade<ion-badge item-right [color]="funcoes.obterCor(tarefa.prioridade)">{{tarefa.prioridade}}</ion-badge></ion-list-header>
                 <ion-item>             
                     <ion-range min="1" max="5" step="1" snaps="true"  [(ngModel)]="tarefa.prioridade"  name="tarefa.prioridade">
                         <ion-label range-left>1</ion-label>
@@ -31,12 +31,13 @@
             <ion-list>
                     <ion-item>
                 <ion-label>Tarefa concluida ?</ion-label>
-                <ion-checkbox [color]="obterCor(tarefa.prioridade)" name="tarefa.flgConcluida" [(ngModel)]="tarefa.flgConcluida"></ion-checkbox>
+                <ion-checkbox [color]="funcoes.obterCor(tarefa.prioridade)" name="tarefa.flgConcluida" [(ngModel)]="tarefa.flgConcluida"></ion-checkbox>
                 </ion-item>
             </ion-list>
             <ion-row>
-             <button ion-button type="submit" color="secondary" (click)="alterar()" [disabled]="!formEditarTarefa.valid"><ion-icon ios="ios-sync" md="md-sync"></ion-icon>&nbsp;Alterar</button>
-             <button ion-button type="button" color="danger" (click)="sair()" ><ion-icon ios="ios-arrow-round-back" md="md-arrow-round-back"></ion-icon>&nbsp;Sair</button>
+             <button ion-button type="submit" color="secondary" (click)="alterar()" [disabled]="!formEditarTarefa.valid || !formEditarTarefa.dirty"><ion-icon ios="ios-sync" md="md-sync"></ion-icon>&nbsp;Alterar</button>
+             <button ion-button type="button" color="danger" (click)="promptDeletarTarefa()" ><ion-icon name="trash"></ion-icon>&nbsp;Remover</button>
+             <button ion-button type="button" (click)="sair()" ><ion-icon ios="ios-arrow-round-back" md="md-arrow-round-back"></ion-icon>&nbsp;Sair</button>
             </ion-row>
 
 

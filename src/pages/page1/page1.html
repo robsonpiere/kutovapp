@@ -17,21 +17,18 @@
     </ion-refresher-content>
   </ion-refresher>
  <ion-list>
+   <ion-list-header>Projetos (deslize para mais opções)</ion-list-header>
     <ion-fab bottom right>
     <button ion-fab color="dark" (click)="novoProjeto()"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
       <ion-item-sliding *ngFor="let projeto of projetos">
-          <ion-item>
+          <ion-item (click)="visualizar(projeto)">
             <ion-avatar item-left>
                <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
             </ion-avatar>
             {{projeto.nome}}
           </ion-item>
           <ion-item-options side="right">
-            <button ion-button (click)="visualizar(projeto)">
-              <ion-icon ios="ios-search" md="md-search"></ion-icon>
-                Visualizar
-            </button>
             <button ion-button color="secondary" (click)="atualizar(projeto)">
               <ion-icon ios="ios-sync" md="md-sync"></ion-icon>
                 Renomear

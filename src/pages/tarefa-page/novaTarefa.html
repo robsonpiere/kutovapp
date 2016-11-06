@@ -21,7 +21,7 @@
             </ion-list>
  
              <ion-list>            
-                <ion-list-header>Prioridade<ion-badge item-right [color]="obterCor(prioridade)">{{prioridade}}</ion-badge></ion-list-header>
+                <ion-list-header>Prioridade<ion-badge item-right [color]="funcoes.obterCor(prioridade)">{{prioridade}}</ion-badge></ion-list-header>
                 <ion-item>             
                     <ion-range min="1" max="5" step="1" snaps="true"  [(ngModel)]="prioridade"  name="prioridade">
                         <ion-label range-left>1</ion-label>
@@ -32,7 +32,7 @@
             <ion-list>
                     <ion-item>
                 <ion-label>Tarefa concluida ?</ion-label>
-                <ion-checkbox [color]="obterCor(prioridade)" name="flgConcluida" [(ngModel)]="flgConcluida"></ion-checkbox>
+                <ion-checkbox [color]="funcoes.obterCor(prioridade)" name="flgConcluida" [(ngModel)]="flgConcluida"></ion-checkbox>
                 </ion-item>
             </ion-list>
             <ion-row>
