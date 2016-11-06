@@ -19,7 +19,11 @@ export class Page1 {
     
   }
 
-  ngOnInit() { this.getProjetos(); }
+  ngOnInit() {  }
+
+  ionViewWillEnter(){
+    this.getProjetos();
+  }
   
 
   getProjetos(){ 

@@ -42,17 +42,18 @@
                <img src="assets/images/triste_black.png">
             </ion-avatar>
             {{tarefa.descricao}}
+            <ion-badge [color]="obterCor(tarefa.prioridade)" item-right>{{tarefa.prioridade}}</ion-badge>
           </ion-item>
           <ion-item-options side="right">
-            <button ion-button>
+            <button ion-button (click)="editarTarefa(tarefa)">
               <ion-icon name="archive"></ion-icon>
-                Ver
+                Ver/Alterar
             </button>
             <button ion-button color="secondary"(click)="promptConcluirTarefa(tarefa)">
               <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
                 Concluir
             </button>
-            <button ion-button color="danger">
+            <button ion-button color="danger" (click)="promptDeletarTarefa(tarefa)">
               <ion-icon name="trash" ></ion-icon>
                 Deletar
             </button>
@@ -67,17 +68,18 @@
                <img src="assets/images/feliz_black.png">
             </ion-avatar>
             {{tarefa.descricao}}
+            <ion-badge [color]="obterCor(tarefa.prioridade)" item-right>{{tarefa.prioridade}}</ion-badge>
           </ion-item>
           <ion-item-options side="right">
             <button ion-button>
-              <ion-icon name="archive"></ion-icon>
-                Ver
+              <ion-icon name="archive" (click)="editarTarefa(tarefa)"></ion-icon>
+                Ver/Alterar
             </button>
             <button ion-button color="secondary" (click)="promptRetomarTarefa(tarefa)">
               <ion-icon ios="ios-rewind" md="md-rewind"></ion-icon>
                 Retomar
             </button>
-            <button ion-button color="danger">
+            <button ion-button color="danger" (click)="promptDeletarTarefa(tarefa)">
               <ion-icon name="trash" ></ion-icon>
                 Deletar
             </button>

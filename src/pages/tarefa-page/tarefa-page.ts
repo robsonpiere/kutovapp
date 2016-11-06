@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, NavParams, ViewController,AlertController} from 'ionic-angular';
+import { NavController, LoadingController, NavParams,AlertController} from 'ionic-angular';
 import{TarefaService} from '../../providers/tarefa-service';
 
 /*
@@ -23,35 +23,27 @@ export class TarefaPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public tarefaserv: TarefaService,
-    public alertCtrl:AlertController
+    public alertCtrl:AlertController,
+    public loadCtlr :LoadingController
     ) {
         this.projeto = navParams.get('projeto');
     }
 
-  ionViewDidLoad() {
-   this.getTarefas(this.projeto._id);
-  }
 
-  getTarefas(idprojeto:string){
-    this.tarefaserv.getTarefas(idprojeto).subscribe(
-      any => {
-              any.forEach(tarefa =>  {
-                if (tarefa.flgConcluida) {
-                  this.tarefasConcluidas.push(tarefa);
-                }else{
-                  this.tarefasPendentes.push(tarefa);
-                }
-              });
-      }
-    )
+  ionViewWillEnter(){
+    this.atualizarTarefas();
   }
 
   atualizarTarefas(){
      this.tarefasConcluidas = [];
      this.tarefasPendentes = [];
+     let loader =  this.loadCtlr.create({
+           content: "Atualizando",
+    });
 
       this.tarefaserv.getTarefas(this.projeto._id).subscribe(
         any => {
+          loader.dismiss();
                 any.forEach(tarefa =>  {
                   if (tarefa.flgConcluida) {
                     this.tarefasConcluidas.push(tarefa);
@@ -67,9 +59,13 @@ export class TarefaPage {
   atualizarTarefasSwipe(refresher){
      this.tarefasConcluidas = [];
      this.tarefasPendentes = [];
+     let loader =  this.loadCtlr.create({
+           content: "Atualizando",
+    });
 
     this.tarefaserv.getTarefas(this.projeto._id).subscribe(
       any => {
+        loader.dismiss();
               any.forEach(tarefa =>  {
                 if (tarefa.flgConcluida) {
                   this.tarefasConcluidas.push(tarefa);
@@ -87,6 +83,12 @@ export class TarefaPage {
   novaTarefa(){
       this.navCtrl.push(NovaTarefaPage,
           {projeto:this.projeto}
+      );
+  }
+
+  editarTarefa(tarefa){
+    this.navCtrl.push(EditarTarefa,
+          {tarefa:tarefa}
       );
   }
 
@@ -116,10 +118,14 @@ export class TarefaPage {
   }
 
   concluirTarefa(id){
+    let loader =  this.loadCtlr.create({
+           content: "Salvando",
+    });
     let resposta : any;
     this.tarefaserv.completarTarefa(id).subscribe(
       any => {
           resposta = any;
+          loader.dismiss();
           if(resposta.success){
             this.mensagem("Sucesso",resposta.message);
             this.atualizarTarefas();
@@ -132,7 +138,6 @@ export class TarefaPage {
   }
 
   promptRetomarTarefa(tarefa){
-
     let confirm = this.alertCtrl.create({
       title:'Retomar  ? ',
       message:'Deseja retomar a Tarefa '+ tarefa.descricao,
@@ -155,16 +160,60 @@ export class TarefaPage {
   }
 
   retomarTarefa(id){
+    let loader =  this.loadCtlr.create({
+           content: "Salvando",
+    });
     let resposta : any;
     this.tarefaserv.retomarTarefa(id).subscribe(
       any => {
           resposta = any;
+          loader.dismiss();
           if(resposta.success){
             this.mensagem("Sucesso",resposta.message);
             this.atualizarTarefas();
           }else{
             this.mensagem("Erro", "Erro ao atualizar a tarefa");
           }
+      }
+    )
+
+  }
+
+  promptDeletarTarefa(tarefa){
+
+    let confirm = this.alertCtrl.create({
+      title:'Excluir  ? ',
+      message:'Deseja remover a Tarefa '+ tarefa.descricao + ' ?',
+      buttons:[
+        {
+          text:'Cancelar',
+          handler:()=>{
+            console.log('cancelado');
+          }
+        },
+        {
+          text: "Sim",
+          handler:()=>{
+            this.removerTarefa(tarefa._id);
+          }
+        }
+      ]
+    });
+    confirm.present();    
+  }
+
+  removerTarefa(id){
+    let loader =  this.loadCtlr.create({
+           content: "Removendo",
+    });
+    let resposta : any;
+    this.tarefaserv.removerTarefa(id).subscribe(
+      any => {
+          resposta = any;
+          loader.dismiss();
+            this.mensagem("Mensagem",resposta.message);
+            this.atualizarTarefas();
+
       }
     )
 
@@ -177,6 +226,34 @@ export class TarefaPage {
         buttons: ["Fechar"]
         });
         alert.present();
+    }
+
+     obterCor(numero:number):string{
+       let cor:string;
+
+       switch (numero) {
+         case 1:
+           cor = "favorite";
+           break;
+        case 2:
+           cor = "secondary";
+           break;
+       case 3:
+           cor = "primary";
+           break;
+        case 4:
+           cor = "danger";
+           break;
+        case 5:
+           cor = "dark";
+           break;       
+         default:
+          cor = "light"
+           break;
+       }
+
+       return cor;
+
     }
 
 }
@@ -195,6 +272,7 @@ export class NovaTarefaPage  {
   flgConcluida: boolean;
 
   constructor(
+      public navCtrl: NavController,
       public navParams: NavParams,
       public tarefaserv : TarefaService,
       public alertCtrl:AlertController,
@@ -202,6 +280,10 @@ export class NovaTarefaPage  {
   ){
       this.projetoPai = this.navParams.get("projeto");
       this.projeto = this.projetoPai._id;
+   }
+
+   sair(){
+     this.navCtrl.pop();
    }
 
    novaTarefa(){
@@ -223,6 +305,7 @@ export class NovaTarefaPage  {
             loader.dismiss();
             if(resposta.success){
               this.mensagem("Sucesso",resposta.message);
+              this.sair();
             }
             else{
               this.mensagem("Erro",resposta.message);
@@ -241,5 +324,115 @@ export class NovaTarefaPage  {
         alert.present();
     }
 
+    obterCor(numero:number):string{
+       let cor:string;
+
+       switch (numero) {
+         case 1:
+           cor = "favorite";
+           break;
+        case 2:
+           cor = "secondary";
+           break;
+       case 3:
+           cor = "primary";
+           break;
+        case 4:
+           cor = "danger";
+           break;
+        case 5:
+           cor = "dark";
+           break;       
+         default:
+          cor = "light"
+           break;
+       }
+
+       return cor;
+
+    }
+}
+
+@Component({
+  selector: 'editar-tarefa-page',
+  templateUrl: 'editarTarefa.html'
+})
+export class EditarTarefa{
+
+
+  tarefa :any;
+
+  constructor(
+      public navCtrl: NavController,
+      public navParams: NavParams,
+      public tarefaserv : TarefaService,
+      public alertCtrl:AlertController,
+      public loadCtlr:LoadingController
+  ){
+      this.tarefa = this.navParams.get("tarefa");
+   }
+
+   sair(){
+     this.navCtrl.pop();
+   }
+
+   alterar(){
+     let loader =  this.loadCtlr.create({
+           content: "Salvando",
+    });
+     let resposta:any;
+     this.tarefaserv.atualizarTarefa(this.tarefa).subscribe(
+        any =>{
+            resposta = any;
+            loader.dismiss();
+            if(resposta.success){
+              this.mensagem("Sucesso",resposta.message);
+              this.sair();
+            }
+            else{
+              this.mensagem("Erro",resposta.message);
+            }          
+        }
+     )
+   }
+
+
+    mensagem(titulo:string,subtitulo:string){
+       
+        let alert = this.alertCtrl.create({
+        title: titulo,
+        subTitle: subtitulo,
+        buttons: ["Fechar"]
+        });
+        alert.present();
+    }
+
+    obterCor(numero:number):string{
+       let cor:string;
+
+       switch (numero) {
+         case 1:
+           cor = "favorite";
+           break;
+        case 2:
+           cor = "secondary";
+           break;
+       case 3:
+           cor = "primary";
+           break;
+        case 4:
+           cor = "danger";
+           break;
+        case 5:
+           cor = "dark";
+           break;       
+         default:
+          cor = "light"
+           break;
+       }
+
+       return cor;
+
+    }
 
 }

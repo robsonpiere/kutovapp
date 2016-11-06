@@ -3,28 +3,28 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    Nova Tarefa: {{projetoPai.nome}}
+    Editar Tarefa
   </ion-navbar>
 </ion-header>
 <ion-content>
-        <form name="formNovaTarefa" #formNovaTarefa="ngForm">
+        <form name="formEditarTarefa" #formEditarTarefa="ngForm">
 
             <ion-list>
                 <ion-list-header>Informações</ion-list-header> 
                 <ion-item>
                     <ion-label>Descrição</ion-label>
-                    <ion-input type="text" value="" [(ngModel)]="descricao" name="descricao" required></ion-input>
+                    <ion-input type="text" value="" [(ngModel)]="tarefa.descricao" name="descricao" required></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label>Data Limite</ion-label>
-                    <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="dataLimite" name="dataLimite"></ion-datetime>
+                    <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="tarefa.dataLimite" name="dataLimite"></ion-datetime>
                 </ion-item>
             </ion-list>
  
              <ion-list>            
-                <ion-list-header>Prioridade<ion-badge item-right [color]="obterCor(prioridade)">{{prioridade}}</ion-badge></ion-list-header>
+                <ion-list-header>Prioridade<ion-badge item-right [color]="obterCor(tarefa.prioridade)">{{tarefa.prioridade}}</ion-badge></ion-list-header>
                 <ion-item>             
-                    <ion-range min="1" max="5" step="1" snaps="true"  [(ngModel)]="prioridade"  name="prioridade">
+                    <ion-range min="1" max="5" step="1" snaps="true"  [(ngModel)]="tarefa.prioridade"  name="tarefa.prioridade">
                         <ion-label range-left>1</ion-label>
                         <ion-label range-right>5</ion-label>
                     </ion-range>
@@ -34,12 +34,12 @@
                 <ion-list-header>Conlusão</ion-list-header>
                     <ion-item>
                 <ion-label>Tarefa concluida ?</ion-label>
-                <ion-checkbox [color]="obterCor(prioridade)" name="flgConcluida" [(ngModel)]="flgConcluida"></ion-checkbox>
+                <ion-checkbox [color]="obterCor(tarefa.prioridade)" name="tarefa.flgConcluida" [(ngModel)]="tarefa.flgConcluida"></ion-checkbox>
                 </ion-item>
             </ion-list>
             <ion-row>
-             <button ion-button type="submit" (click)="novaTarefa()" [disabled]="!formNovaTarefa.valid">Cadastrar</button>
-             <button ion-button type="button" color="danger" (click)="sair()" >Cancelar</button>
+             <button ion-button type="submit" color="secondary" (click)="alterar()" [disabled]="!formEditarTarefa.valid">Alterar</button>
+             <button ion-button type="button" color="danger" (click)="sair()" >Sair</button>
             </ion-row>
 
 
