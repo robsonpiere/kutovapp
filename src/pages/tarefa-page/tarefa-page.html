@@ -41,7 +41,8 @@
             <ion-avatar item-left>
                <img src="assets/images/triste_black.png">
             </ion-avatar>
-            {{tarefa.descricao}}
+            <h2>{{tarefa.descricao}}</h2>
+            <p>Data Limite: {{tarefa.dataLimite | date:'dd-MM-y'}}</p>
             <ion-badge [color]="obterCor(tarefa.prioridade)" item-right>{{tarefa.prioridade}}</ion-badge>
           </ion-item>
           <ion-item-options side="right">

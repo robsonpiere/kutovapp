@@ -233,22 +233,22 @@ export class TarefaPage {
 
        switch (numero) {
          case 1:
-           cor = "favorite";
+           cor = "prior1";
            break;
         case 2:
-           cor = "secondary";
+           cor = "prior2";
            break;
        case 3:
-           cor = "primary";
+           cor = "prior3";
            break;
         case 4:
-           cor = "danger";
+           cor = "prior4";
            break;
         case 5:
-           cor = "dark";
+           cor = "prior5";
            break;       
          default:
-          cor = "light"
+          cor = "dark"
            break;
        }
 
