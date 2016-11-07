@@ -50,7 +50,7 @@ export class TarefaPage {
      let loader =  this.loadCtlr.create({
            content: "Atualizando",
     });
-
+      loader.present();
       this.tarefaserv.getTarefas(this.projeto._id).subscribe(
         any => {          
                 any.forEach(tarefa =>  {
@@ -69,13 +69,8 @@ export class TarefaPage {
   atualizarTarefasSwipe(refresher){
      this.tarefasConcluidas = [];
      this.tarefasPendentes = [];
-     let loader =  this.loadCtlr.create({
-           content: "Atualizando",
-    });
-
-    this.tarefaserv.getTarefas(this.projeto._id).subscribe(
+      this.tarefaserv.getTarefas(this.projeto._id).subscribe(
       any => {
-        loader.dismiss();
               any.forEach(tarefa =>  {
                 if (tarefa.flgConcluida) {
                   this.tarefasConcluidas.push(tarefa);
@@ -131,6 +126,7 @@ export class TarefaPage {
     let loader =  this.loadCtlr.create({
            content: "Salvando",
     });
+    loader.present();
     let resposta : any;
     this.tarefaserv.completarTarefa(id).subscribe(
       any => {
@@ -173,6 +169,7 @@ export class TarefaPage {
     let loader =  this.loadCtlr.create({
            content: "Salvando",
     });
+    loader.present();
     let resposta : any;
     this.tarefaserv.retomarTarefa(id).subscribe(
       any => {
@@ -216,6 +213,7 @@ export class TarefaPage {
     let loader =  this.loadCtlr.create({
            content: "Removendo",
     });
+    loader.present();
     let resposta : any;
     this.tarefaserv.removerTarefa(id).subscribe(
       any => {
@@ -274,6 +272,7 @@ export class NovaTarefaPage  {
      let loader =  this.loadCtlr.create({
            content: "Salvando",
     });
+    loader.present();
      let tarefa = {
       flgConcluida:this.flgConcluida,
       descricao:this.descricao,
@@ -339,6 +338,7 @@ export class EditarTarefa{
      let loader =  this.loadCtlr.create({
            content: "Salvando",
     });
+    loader.present();
      let resposta:any;
      this.tarefaserv.atualizarTarefa(this.tarefa).subscribe(
         any =>{
@@ -393,6 +393,7 @@ export class EditarTarefa{
     let loader =  this.loadCtlr.create({
            content: "Removendo",
     });
+    loader.present();
     let resposta : any;
     this.tarefaserv.removerTarefa(id).subscribe(
       any => {
