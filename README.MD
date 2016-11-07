@@ -8,9 +8,13 @@ O objetivo desta atividade é a criação de uma aplicação híbrida relativame
 
 A aplicação escolhida para este semestre é um Gerenciador de Tarefas, isto é, uma aplicação web para gerenciar as tarefas que uma pessoa qualquer deve realizar.
 
-Dowload do aplicativo: [Android](https://github.com/robsonpiere/kutovapp/raw/master/APLICATIVO_GERADO/android-debug.apk)
+Download do aplicativo: [Android](https://github.com/robsonpiere/kutovapp/raw/master/APLICATIVO_GERADO/android-debug.apk)
 
-Como rodar o projeto
+Link para API [https://github.com/YitzhakStone/kutovapp-api](https://github.com/YitzhakStone/kutovapp-api) (não é necessário dowload nem execução, pois a mesma está publicada no heroku, segue apenas para conhecimento da estrutura).
+
+página do projeto: [https://robsonpiere.github.io/kutovapp/](https://robsonpiere.github.io/kutovapp/)
+
+COMO RODAR O PROJETO
 ---------
 
 1. Necessário:
