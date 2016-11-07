@@ -12,10 +12,10 @@
     <ion-toolbar no-border-top>
     <ion-segment [(ngModel)]="tipoTarefa">
       <ion-segment-button value="pendentes">
-        Pendentes
+        Tarefas Pendentes
       </ion-segment-button>
       <ion-segment-button value="concluidas">
-        Concluidas
+        Tarefas Concluidas
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -36,13 +36,14 @@
     </ion-fab>
   <div [ngSwitch]="tipoTarefa">
     <ion-list *ngSwitchCase="'pendentes'">
+      <ion-list-header><small>(Clique para abrir/editar, deslize para mais opções)</small></ion-list-header>
       <ion-item-sliding *ngFor="let tarefa of tarefasPendentes">
           <ion-item (click)="editarTarefa(tarefa)">
             <ion-avatar item-left>
                <img src="assets/images/triste_black.png">
             </ion-avatar>
             <h2>{{tarefa.descricao}}</h2>
-            <p>Data Limite: {{tarefa.dataLimite | date:'dd-MM-y'}}</p>
+            <p>Data Limite: {{formatar(tarefa.dataLimite)}}</p>
             <ion-badge [color]="funcoes.obterCor(tarefa.prioridade)" item-right>{{tarefa.prioridade}}</ion-badge>
           </ion-item>
           <ion-item-options side="right">            
@@ -59,6 +60,7 @@
     </ion-list>
 
     <ion-list *ngSwitchCase="'concluidas'">
+      <ion-list-header><small>(Clique para abrir/editar, deslize para mais opções)</small></ion-list-header>
       <ion-item-sliding *ngFor="let tarefa of tarefasConcluidas">
           <ion-item (click)="editarTarefa(tarefa)">
             <ion-avatar item-left>

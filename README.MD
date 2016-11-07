@@ -25,7 +25,7 @@ Como rodar o projeto
     ```
 
     ```javascript
-    //instala os puglins cordova
+    //instala os plugins cordova
     ionic state restore --plugins 
     ```
 3. Para executar e exportar a aplicação para dispositivo móvel:

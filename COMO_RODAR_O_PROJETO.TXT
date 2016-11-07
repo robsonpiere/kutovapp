@@ -1,0 +1,44 @@
+Como rodar o projeto
+
+Necessário:
+
+Nodejs e npm
+Ionic V2 (verificar depêndências)
+Cordova
+
+!!!!!IMPORTANTE!!!!!!
+Após Dowload do código fonte devem ser executados
+
+//instala os módulos necessários
+npm install
+
+//instala os plugins cordova principalmente o de camera
+ionic state restore --plugins 
+
+!!!!!!!!!!!!!!!!I
+
+
+Para android existe uma apk já gerado na pasta Aplicativo Gerado
+Para executar e exportar a aplicação para dispositivo móvel:
+
+
+
+//adicionar a plataforma
+ionic platform add <plataform> // plataform = android, ios
+
+//Executar no  browser
+ionic serve --lab //funções nativas não funcionam
+
+//exportar o aplicativo
+ionic build <plataform> // plataform = android, ios ou 
+
+
+Alunos do Grupo 10
+
+Mateus Fernando
+Robson Piere 
+Tiago Higino
+Vinícius Ponciano
+Yitzhak Stone
+
+repostiório do projeto: https://github.com/robsonpiere/kutovapp

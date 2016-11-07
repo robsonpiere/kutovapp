@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.kutovapp480166" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.ionicframework.kutovapp480166" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>kutovapp</name>
   <description>Uma aplicação para gerenciamento das tarefas</description>
-  <author email="robsonpierehi@outlook.com" href="http://ionicframework.com/">Robson Piere</author>
+  <author email="robsonpiere@outlook.com" href="http://ionicframework.com/">Robson Piere</author>
+  <author email="andrade@hotmail.com.br" href="http://ionicframework.com/">Yitzhak Stone</author>
   <content src="index.html"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>

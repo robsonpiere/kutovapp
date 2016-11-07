@@ -13,7 +13,6 @@ import{LoginService} from '../providers/login-service';
 import{TarefaService} from '../providers/tarefa-service';
 import{Funcoes} from '../providers/funcoes-service';
 
-
 @NgModule({
   declarations: [
     MyApp,

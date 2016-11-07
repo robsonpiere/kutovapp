@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { NavController, LoadingController, NavParams,AlertController} from 'ionic-angular';
 import{TarefaService} from '../../providers/tarefa-service';
 import {Funcoes} from '../../providers/funcoes-service';
@@ -26,7 +26,7 @@ export class TarefaPage {
     public tarefaserv: TarefaService,
     public alertCtrl:AlertController,
     public loadCtlr :LoadingController,
-    public funcoes: Funcoes
+    public funcoes: Funcoes,
     ) {
         this.projeto = navParams.get('projeto');
     }
@@ -34,6 +34,14 @@ export class TarefaPage {
 
   ionViewWillEnter(){
     this.atualizarTarefas();
+  }
+
+  formatar(stringData){
+    let data = new Date(stringData);
+    let dia = data.getDate();
+    let mes = data.getMonth() + 1;
+    let ano = data.getFullYear();
+    return dia + "/" + mes + "/"+ ano;
   }
 
   atualizarTarefas(){
